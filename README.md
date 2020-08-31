@@ -4,7 +4,7 @@
 The Main idea behind this API is to allow users to place orders by themselves with Jacob Elektronik, which potentially cuts short the long Customer EDI integration time.
 ---
 
-## CustomerOrder API
+## Order API
 
 Users have the opportunity to place the orders via this Customer order API. All the user needs to have is a [OpenTRANS](https://www.digital.iao.fraunhofer.de/de/publikationen/OpenTRANS21.html) XML file. This API takes the user's XML file and places the order at Jacob. If the order was successfully placed, the user receives a success response. If the order has any errors, the user gets notified about the problem, enabling him/her to make appropriate changes to the order.
 
@@ -22,7 +22,7 @@ Base-url : https://api.jacob.services/1.0/joe
 
 ## Document Polling
 
-The CustomerOrder API also serves its users with documents like, Orders, Invoices, DispatchNotes, OrderResponses. After successfully placing the order, the user can use the orderId to retrieve different documents related to the placed order. This also allows means for checking if a certain document is available yet.
+The Order API also serves its users with documents like, Orders, Invoices, DispatchNotes, OrderResponses. After successfully placing the order, the user can use the orderId to retrieve different documents related to the placed order. This also allows means for checking if a certain document is available yet.
 
 ![](images/docpol.PNG)
 
@@ -53,7 +53,7 @@ Users have the possibility to subscribe to specific events or can subscribe to a
 What is a subscription ? [Link](webhookSubscriptionApi/subscription.md)
 
 # Subscription Information
-Base-url : https://api.jacob.services/1.0/events/subscriptions
+Base-url: https://api.jacob.services/1.0/events/subscriptions
 
 | Url | Method | Short Description | Details Page |
 | :--- | :--- | :--- | :--- |

@@ -1,41 +1,39 @@
 # GET orders
 
 ---
-Retrieves a list of orders .
+Retrieve a list of orders
 ---
 
-* This `curl` command will retrieve a list of orders 
+* This `curl` command will retrieve a list of orders.
 
 ```
-Request :
+Request:
 
-Accept types : 
+Accept types: 
  - application/xml  - Returns a list of XML orders.
- - application/json - Returns a list of Json orders.
+ - application/json - Returns a list of JSON orders.
 
 curl -sS -X GET -H "Accept: application/xml" https://api.jacob.services/1.0/joe?apikey=9876
 
 curl -sS -X GET -H "Accept: application/json"  https://api.jacob.services/1.0/joe?apikey=9876
-
 ```
 
 ``` 
-Responses :
-    200 - Ok, Returns a list of orders for the given CustomerId.
-    400 - Bad Request.
-    406 - The request contained an unsupported 'Accept' header.
+Responses:
+    200 - OK, returns a list of orders
+    400 - Bad request
+    406 - The request contained an unsupported 'Accept' header
 ```
 --------------------------------------------------------------------------------------
-Example Response : Returns an OrderList containing a list of links of all the available orders of the user.
+Example response: Returns a list of links to all available orders.
 
 ```
 {
-    "orderList": [
-        "https://api.jacob.services/1.0/joe/{orderId}/order",
-        "https://api.jacob.services/1.0/joe/{orderId}/order",
-        "https://api.jacob.services/1.0/joe/{orderId}/order",
-        "https://api.jacob.services/1.0/joe/{orderId}/order",
-    ]
+  "orderList": [
+    "https://api.jacob.services/1.0/joe/{orderId}/order",
+    "https://api.jacob.services/1.0/joe/{orderId}/order",
+    "https://api.jacob.services/1.0/joe/{orderId}/order",
+    "https://api.jacob.services/1.0/joe/{orderId}/order"
+  ]
 }
-
 ```

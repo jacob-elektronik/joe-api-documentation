@@ -1,25 +1,24 @@
 # GET Subscriptions
 
 ---
-Retrieves a list of subscriptions of a user with specific event and identifier.
+Retrieve a list of subscriptions for a specific event/identifier combination.
 ---
 
-* This `curl` command retrieves a list of subscriptions of a user with specific event and identifier..
+* This `curl` command retrieves a list of subscriptions for the specific event and identifier.
 
 ```
-Request :
+Request:
 curl -sS -X GET -H "Accept: application/json"  https://api.jacob.services/1.0/events/subscriptions?event=example.event&identifierType=exampleId&identifierValue=exampleValue&apikey=abcdefghijklmnop
-
 ```
 
 ``` 
-Responses :
-    200 - Ok, Return a list of all the subscriptions of a user.
-    400 - Bad Request.
-    404 - Notfound.
+Responses:
+    200 - OK, return a list of all subscriptions
+    400 - Bad request
+    404 - Not found
 ```
 --------------------------------------------------------------------------------------
-Example Response for 200-Ok: Returns a list of subscriptions with the given Event and Identifier.
+Example Response: Returns a list of subscriptions with the given event and identifier.
 
 ```json
 [
@@ -44,5 +43,5 @@ Example Response for 200-Ok: Returns a list of subscriptions with the given Even
       "url": "string"
     }
   }
-] 
+]
 ```

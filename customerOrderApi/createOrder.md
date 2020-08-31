@@ -1,7 +1,7 @@
 # Create/Place order
 
 ---
-Creates an order with the orderId of the user.
+Create an order with the orderId of the user.
 ---
 
 This is an example of a OpenTRANS XML document:
@@ -94,8 +94,7 @@ This is an example of a OpenTRANS XML document:
 ``` 
 ------------------------------------------------------------------------------------------------------------
 
-XML Definition : 
-
+XML Definition: 
 ```xml
 <ORDER_INFO>
     <ORDER_ID></ORDER_ID>
@@ -115,7 +114,7 @@ XML Definition :
 
 | XML Field | Description | More information | data type | example value |
 | -------------- | :--------- | ----------:| ----------:|----------:| 
-| &lt;ORDER_INFO&gt; |  administrative information on the order is summarized | - | - | - |
+| &lt;ORDER_INFO&gt; |  Administrative information on the order is summarized | - | - | - |
 | &lt;ORDER_ID&gt; | The orderId of the user | - | string | 987654321 |
 | &lt;ORDER_DATE&gt; | Date of the order  | format :yyyy-MM-dd'T'HH:mm:ss | date | 2020-08-10T10:05:38 |
 | &lt;LANGUAGE&gt;  | Language | - | string | ger(german) |
@@ -163,7 +162,7 @@ XML Definition :
 | &lt;ZIP&gt; |      ZIP code of address   | - | string | 12345 |
 | &lt;CITY&gt; |       Town or city of the company   | - | string | Musterstadt |
 | &lt;COUNTRY&gt; |       Country   | - | string | Deutschland |
-| &lt;COUNTRY_CODED&gt; |       Code of the Country   | - | string | DE |
+| &lt;COUNTRY_CODED&gt; |       ISO 3166-2 code of the country   | - | string | DE |
 | &lt;EMAIL&gt; |       e-mail address   | - | string | someone@example.com |
 
 ------------------------------------------------------------------------------------------------------------
@@ -203,7 +202,7 @@ XML Definition :
 | &lt;PRICE_LINE_AMOUNT&gt;  | The total price of the item-line | (PRICE_AMOUNT*QUANTITY) | int | 20.90 |
 
 ```
-* PRICE_LINE_AMOUNT In the normal case the value results from multiplying  but has to be explicitly quoted. The element PRICE_LINE_ AMOUNT can result from multiplying PRICE_AMOUNT and PRICE_UNIT_VALUE if the price is not connected to the ordered unit but to another price-unit.
+* PRICE_LINE_AMOUNT In the normal case the value results from multiplying but has to be explicitly quoted. The element PRICE_LINE_AMOUNT can result from multiplying PRICE_AMOUNT and PRICE_UNIT_VALUE if the price is not connected to the ordered unit but to another price-unit.
 ```
 ------------------------------------------------------------------------------------------------------------
 
@@ -220,27 +219,27 @@ XML Definition :
 | &lt;TOTAL_ITEM_NUM&gt;  |  Contains the total number of item lines in the business document | - | count | 1 |
 | &lt;TOTAL_AMOUNT&gt;  |  Total amount covering all items in this business document.  | - | - | 20.90 |
 
-  
+
 - POST:
       consumes:
       - application/json
       - application/xml
 
-* This `curl` command will create an Order in the CustomerOrder Api with the contents of the joe_order.user_order.xml : 
+* This `curl` command will create an Order in the Order API with the contents of the joe_order.user_order.xml : 
 
 ```
-Request :
-curl -vsS -X POST -H "Content-Type: application/xml" -d @joe_order.user_order.xml https://api.jacob.services/1.0/joe?apikey=9876
+Request:
+curl -v -sS -X POST -H "Content-Type: application/xml" -d @joe_order.user_order.xml https://api.jacob.services/1.0/joe?apikey=9876
 
 ```
 
 ``` 
 Responses :
-    201 - Status created, for a successfully placed order.
-    400 - Bad Request.
-    409 - An order with this Id already exists.
+    201 - Created, for a successfully placed order
+    400 - Bad request.
+    409 - An order with this Id already exists
 ```
 --------------------------------------------------------------------------------------
-Example Response : Returns the location of the placed order in the Response Header.
+Example Response: Returns the location of the placed order in the Response Header.
 
-For a successfully placed order (201 Status Created), The response header contains the location of the placed order,  Location - https://api.jacob.services/1.0/joe/orderId/order, so the users can navigate to the particular location to take a look at their newly placed order.
+For a successfully placed order (201 Status Created), the response header contains the location of the placed order,  Location - https://api.jacob.services/1.0/joe/orderId/order, so the users can navigate to the particular location to take a look at their newly placed order.
