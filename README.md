@@ -1,65 +1,65 @@
-# JOE Order Documentation
 
----
-The Main idea behind this API is to allow users to place orders by themselves with Jacob Elektronik, which potentially cuts short the long Customer EDI integration time.
----
+# JOE API Documentation
 
-## Order API
+JOE stands for [JACOB](https://www.jacob.de/) Order Engine and describes a standardized interface to handle orders. The JOE API allows placing orders, retrieving order-related documents like invoices, and subscribing to order-related events. The main goal of JOE is to avoid long integration phases by keeping things simple.
 
-Users have the opportunity to place the orders via this Customer order API. All the user needs to have is a [OpenTRANS](https://www.digital.iao.fraunhofer.de/de/publikationen/OpenTRANS21.html) XML file. This API takes the user's XML file and places the order at Jacob. If the order was successfully placed, the user receives a success response. If the order has any errors, the user gets notified about the problem, enabling him/her to make appropriate changes to the order.
+Feel free to [contact us](mailto:joe.api@jacob.de) with any issues regarding this API.
 
-![](images/orderdoc.PNG)
+## Authentication
+Using the JOE API requires an API key which must be appended to each request as a query parameter:
+```
+https://api.jacob.services/1.0/joe?apikey=123
+```
 
-## Order Information
-Base-url : https://api.jacob.services/1.0/joe
+**Note that API keys are customer-specific and should be kept confidential.**
 
-| Url | Method | Short Description | Details Page |
+## Orders
+
+All documents, i.e. orders, order responses, invoices and dispatch notifications, are represented as JSON or XML. The XML representations loosely follow the [OpenTRANS 2.1 specification](https://www.digital.iao.fraunhofer.de/de/publikationen/OpenTRANS21.html), the corresponding JSON ones are equivalent. There are [examples for both formats](orders/document_objects.md).
+
+The default input and output format for documents is XML. This can be changed to JSON by setting the request's `Content-Type` or `Accept` header to `application/json`.
+
+### Placing Orders
+| Method | URL | Description | Details |
 | :--- | :--- | :--- | :--- |
-| `Base-url?apikey=9876` | `GET` | Retrieves a list of all orders. | [Link](customerOrderApi/getOrders.md) |
-| `Base-url?apikey=9876` | `POST` | Creates a new order. | [Link](customerOrderApi/createOrder.md) |
+| POST | https://api.jacob.services/1.0/joe/{orderId} | Place an order | [Link](orders/place_order.md) |
 
-----------------------------------------------------------------------------------------------------------------------------------------
-
-## Document Polling
-
-The Order API also serves its users with documents like, Orders, Invoices, DispatchNotes, OrderResponses. After successfully placing the order, the user can use the orderId to retrieve different documents related to the placed order. This also allows means for checking if a certain document is available yet.
-
-![](images/docpol.PNG)
-
-## Documents Polling Information
-Base-url : https://api.jacob.services/1.0/joe
-
-| Url | Method | Short Description | Details Page |
+### Order Information
+| Method | URL | Description | Details |
 | :--- | :--- | :--- | :--- |
-| `Base-url/orderId/document?apikey=9876` | `GET` | Retrieves the different documents related to a particular order with the given orderId. | [Link](documentPolling/documentPolling.md) |
+| GET | https://api.jacob.services/1.0/joe | List all orders | [Link](orders/list_orders.md) |
+| GET | https://api.jacob.services/1.0/joe/{orderId} | Get document status | [Link](orders/get_document_status.md) |
 
-----------------------------------------------------------------------------------------------------------------------
-
-## Subscription API
-
-The Users also have a possibility of registering their endpoint's/url's, which gets notified whenever there is change in the state of the order.
-
-Example events : 
-- dispatch.generated
-- invoice.generated
-- response.generated
-
-For this, the User has to make a subscription. Subscription API allows users to make subscriptions (or) register their endpoints and subscribe to specific events/state changes of the order, this registered endpoint is then notified letting the user know about the changes in their order.
-
-![](images/subapi.PNG)
-
-Users have the possibility to subscribe to specific events or can subscribe to all the available events.
-
-What is a subscription ? [Link](webhookSubscriptionApi/subscription.md)
-
-# Subscription Information
-Base-url: https://api.jacob.services/1.0/events/subscriptions
-
-| Url | Method | Short Description | Details Page |
+### Order-related Documents
+| Method | URL | Description | Details |
 | :--- | :--- | :--- | :--- |
-| `Base-url?apikey=abcdefghijklmnop` | `GET` | Retrieves a list of subscriptions of a user, with specific Event & Identifier. | [Link](webhookSubscriptionApi/getSubscriptions.md)|
-| `Base-url?apikey=abcdefghijklmnop` | `POST` | Creates a subscription. | [Link](webhookSubscriptionApi/createSubscription.md)|
-| `Base-url/{subscriptionId}?apikey=abcdefghijklmnop` | `GET` | Retrieves a specific subscription with a subscriptionId. | [Link](webhookSubscriptionApi/getSubscription.md)|
-| `Base-url/{subscriptionId}?apikey=abcdefghijklmnop` | `PUT` | Replaces the whole subscription and updates it | [Link](webhookSubscriptionApi/putSubscription.md)|
-| `Base-url/{subscriptionId}?apikey=abcdefghijklmnop` | `PATCH` | Checks for update and if necessary, updates the subscription | [Link](webhookSubscriptionApi/patchSubscription.md)|
-| `Base-url/{subscriptionId}?apikey=abcdefghijklmnop` | `DELETE` | Deletes a subscription | [Link](webhookSubscriptionApi/deleteSubscription.md)|
+| GET | https://api.jacob.services/1.0/joe/{orderId}/order | Download an order | [Link](orders/get_order.md) |
+| GET | https://api.jacob.services/1.0/joe/{orderId}/response | Download an order response | [Link](orders/get_response.md) |
+| GET | https://api.jacob.services/1.0/joe/{orderId}/invoice | Download an invoice | [Link](orders/get_invoice.md) |
+| GET | https://api.jacob.services/1.0/joe/{orderId}/dispatch | Download a dispatch notification | [Link](orders/get_dispatch.md) |
+
+## Events
+JOE generates events whenever new order response, invoice or dispatch notification documents become available. The event subscription mechanism allows getting notified about such events.
+
+### Technical Details
+Getting notified requires an HTTP endpoint. Subscribing means specifying the desired event type and the HTTP endpoint. Once subscribed, every time an event of the desired type occurs JOE will POST the JSON representation of the event to the user's endpoint.
+
+Endpoints may be access restricted by one of the following mechanisms:
+* ['Basic' HTTP Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)
+* Authorization via custom HTTP header, e.g. `x-access-token: 3858f622`
+* Authorization via query parameter, e.g. `http://example.com/webhook?token=3858f622`
+
+See the description of the [subscription object](events/subscription_object.md) for details.
+
+### Subscribing and Unsubscribing
+| Method | URL | Description | Details |
+| :--- | :--- | :--- | :--- |
+| POST | https://api.jacob.services/1.0/joe/events/subscriptions | Subscribe to an event | [Link](events/subscribe.md) |
+| DELETE | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Unsubscribe from an event | [Link](events/unsubscribe.md) |
+
+### Managing Subscriptions
+| Method | URL | Description | Details |
+| :--- | :--- | :--- | :--- |
+| GET | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Fetch a subscription | [Link](events/get_subscription.md) |
+| PATCH | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Change a subscription | [Link](events/change_subscription.md) |
+| PUT | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Replace a subscription | [Link](events/replace_subscription.md) |
