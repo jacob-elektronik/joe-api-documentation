@@ -13,6 +13,6 @@ Unsubscribe from the specified subscription.
 
 ### Example
 ```
-# curl -X DELETE https://api.jacob.services/1.0/events/subscriptions/d8bbd7e0-f0df-11ea-adc1-0242ac120002`
+# curl -X DELETE https://api.jacob.services/1.0/events/subscriptions/d8bbd7e0-f0df-11ea-adc1-0242ac120002
 #
 ```
