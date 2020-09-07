@@ -22,7 +22,7 @@ The default input and output format for documents is XML. This can be changed to
 ### Placing Orders
 | Method | URL | Description | Details |
 | :--- | :--- | :--- | :--- |
-| POST | https://api.jacob.services/1.0/joe/{orderId} | Place an order | [Link](orders/place_order.md) |
+| POST | https://api.jacob.services/1.0/joe | Place an order | [Link](orders/place_order.md) |
 
 ### Order Information
 | Method | URL | Description | Details |

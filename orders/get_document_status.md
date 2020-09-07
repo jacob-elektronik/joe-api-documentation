@@ -23,7 +23,7 @@ Return a list of [documents](document_objects.md) and their availability for the
 
 ### Example
 ```
-# curl https://api.jacob.services/1.0/joe/987654321\?apikey=123
+# curl https://api.jacob.services/1.0/joe/987654321?apikey=123
 {
   "order": {
     "link": "https://api.jacob.services/1.0/joe/987654321/order",
