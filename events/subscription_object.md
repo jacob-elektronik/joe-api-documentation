@@ -57,7 +57,7 @@ The `webhook` object accepts an optional `authentication` object to allow for ac
     }
     ```
   
-* Authorization via custom HTTP header, e.g. `x-access-token: 3858f622`:
+* Authorization via custom HTTP header, e.g. `x-access-token: 3858f62230ac3c915f300c664312c63f`:
     ```json
         ...
       },
@@ -72,7 +72,7 @@ The `webhook` object accepts an optional `authentication` object to allow for ac
     }
     ```
   
-* Authorization via query parameter, e.g. `http://example.com/webhook?access_token=3858f622`:
+* Authorization via query parameter, e.g. `http://example.com/webhook?access_token=3858f62230ac3c915f300c664312c63f`:
     ```json
         ...
       },
