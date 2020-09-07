@@ -20,7 +20,7 @@ Returns the changed subscription.
 
 ### Example
 ```
-# cat add_pw.json
+# cat add_basicauth.json
 {
   "webhook": {
     "url": "https://example.com/webhook",

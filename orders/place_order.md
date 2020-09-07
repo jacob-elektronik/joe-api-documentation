@@ -2,7 +2,7 @@
 Place an [order](order_object.md). The default input format is XML.
 
 ### Notes
-`ORDER`.`ORDER_HEADER`.`ORDER_INFO`.`ORDER_ID` becomes the order ID.
+`ORDER`.`ORDER_HEADER`.`ORDER_INFO`.`ORDER_ID` becomes the order ID. This order ID is referred to as `{orderId}` in other API calls.
 
 Upon reception the following changes are made to the [order](order_object.md):
 * `CUSTOMER_ORDER_REFERENCE`.`ORDER_ID` is set to the order ID.
