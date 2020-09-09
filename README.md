@@ -11,7 +11,7 @@ Using the JOE API requires an API key which must be appended to each request as 
 https://api.jacob.services/1.0/joe?apikey=123
 ```
 
-**Note that API keys are customer-specific and should be kept confidential.**
+**Keep in mind that API keys are customer-specific and should be kept confidential.**
 
 ## Orders
 
@@ -40,6 +40,9 @@ The default input and output format for documents is XML. This can be changed to
 
 ## Events
 JOE generates events whenever new order response, invoice or dispatch notification documents become available. The event subscription mechanism allows getting notified about such events.
+
+The alternative to getting notified about events is polling, i.e. checking [the document status](orders/get_document_status.md) at regular intervals.
+ 
 
 ### Technical Details
 Getting notified requires an HTTP endpoint. Subscribing means specifying the desired event type and the HTTP endpoint. Once subscribed, every time an event of the desired type occurs JOE will POST the JSON representation of the event to the user's endpoint.
