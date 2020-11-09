@@ -27,7 +27,7 @@ This object provides general product information.
 | shortDescription | A brief description of the product |
 | categoryID | The product's category ID |
 | weight | Product weight with packaging in kilograms |
-| condition | Either `new`, `opened` or `???` |
+| condition | Either `new` or `opened` (aka "B-Ware") |
 | manufacturer | The product's manufacturer |
 | ean | The product's [International Article Number][1] |
 | qty | Amount of items currently in stock |
