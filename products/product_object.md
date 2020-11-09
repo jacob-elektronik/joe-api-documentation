@@ -31,5 +31,5 @@ This object provides general product information.
 | manufacturer | The product's manufacturer |
 | ean | The product's [International Article Number][1] |
 | qty | Amount of items currently in stock |
-| deliveryTime | Delivery time within Germany |
+| deliveryTime | Delivery time within Germany in work days |
 | imageUrl | The product's main image |
