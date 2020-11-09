@@ -26,7 +26,7 @@ This object provides general product information.
 | sku | The article number |
 | shortDescription | A brief description of the product |
 | categoryID | The product's category ID |
-| weigth | Product weight with packaging in kilograms |
+| weight | Product weight with packaging in kilograms |
 | condition | Either `new`, `opened` or `???` |
 | manufacturer | The product's manufacturer |
 | ean | The product's [International Article Number][1] |
