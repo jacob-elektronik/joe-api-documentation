@@ -66,3 +66,22 @@ See the description of the [subscription object](events/subscription_object.md) 
 | GET | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Fetch a subscription | [Link](events/get_subscription.md) |
 | PATCH | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Change a subscription | [Link](events/change_subscription.md) |
 | PUT | https://api.jacob.services/1.0/joe/events/subscriptions/{subId} | Replace a subscription | [Link](events/replace_subscription.md) |
+
+
+# Product API Documentation
+
+Product information, like product descriptions, available stock and prices, can be queried by using the Product API.
+
+## Authentication
+Unless otherwise noted using the Product API requires an API key which must be appended to each request as a query parameter:
+```
+https://api.jacob.services/1.0/products/...?apikey=123
+```
+
+**Keep in mind that API keys are customer-specific and should be kept confidential.**
+
+### Product Information
+| Method | URL | Description | Details |
+| :--- | :--- | :--- | :--- |
+| GET | https://api.jacob.services/1.0/products/{sku} | Get general product information | [Link](products/info.md) |
+| GET | https://api.jacob.services/1.0/products/{sku}/price | Get price and available stock for a product | [Link](products/price.md) |
