@@ -7,7 +7,8 @@ Place an [order](order_object.md). The default input format is XML.
 Upon reception the following changes are made to the [order](order_object.md):
 * `CUSTOMER_ORDER_REFERENCE`.`ORDER_ID` is set to the order ID.
 * The buyer's `PARTY`.`PARTY_ID` is set to the customer's unique customer number here at JACOB.
-
+* `NAME` is used for the Company name or title (e.g. "Frau", "Herr")
+* `NAME2` is used for the actual name or the person
 
 ### Request
 `POST https://api.jacob.services/1.0/joe`
