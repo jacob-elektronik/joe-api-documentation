@@ -26,6 +26,7 @@ The [OpenTRANS 2.1 specification][1] explains this object in detail.
             <COUNTRY>Deutschland</COUNTRY>
             <COUNTRY_CODED>DE</COUNTRY_CODED>
             <EMAIL>max@example.com</EMAIL>
+            <VAT_ID>DE999999999</VAT_ID>
           </ADDRESS>
         </PARTY>
         <PARTY>
