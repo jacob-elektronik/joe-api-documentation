@@ -7,6 +7,7 @@ Place an [order](order_object.md). The default input format is XML.
 Upon reception the following changes are made to the [order](order_object.md):
 * `CUSTOMER_ORDER_REFERENCE`.`ORDER_ID` is set to the order ID.
 * The buyer's `PARTY`.`PARTY_ID` is set to the customer's unique customer number here at JACOB.
+* The buyer's `PARTY`.`ADDRESS`.`VAT_ID` is used in the tax calculation process. `VAT_ID` must be provided for tax-free eligible orders.
 * `NAME` is used for the Company name or title (e.g. "Frau", "Herr")
 * `NAME2` is used for the actual name or the person
 
